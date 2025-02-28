@@ -1,7 +1,10 @@
-@for (todo of todoItems(); track todo.id) {
-    <p>{{ todo.title}}</p>
-    <p>{{ todo.id}}</p>
-    <p>{{ todo.userId}}</p>
-    <p>{{ todo.completed}}</p>
-
-}
+<h3>TodoX List</h3>
+<p *ngIf="!todoItems().length">Loading...</p>
+<ul>
+    @for (todo of todoItems(); track todo.id){
+        <li class="todox__item">
+            <input id="todo-{{todo.id}}" type="checkbox" [value]="todo.completed"/>
+            <label for="todo-{{todo.id}}">{{todo.title}}</label>
+        </li>
+    }
+</ul>
