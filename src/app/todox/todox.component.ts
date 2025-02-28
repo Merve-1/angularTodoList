@@ -3,16 +3,19 @@ import { TodoxService } from '../services/todox.service';
 import { Todo } from '../model/todo.type';
 import { catchError } from 'rxjs';
 import { TodoItemComponent } from '../components/todo-item/todo-item.component';
+import { FormsModule } from '@angular/forms';
+import { FilterTodoxPipe } from '../pipes/filter-todox.pipe';
 
 @Component({
   selector: 'app-todox',
-  imports: [TodoItemComponent],
+  imports: [TodoItemComponent, FormsModule, FilterTodoxPipe],
   templateUrl: './todox.component.html',
   styleUrl: './todox.component.scss'
 })
 export class TodoxComponent implements OnInit {
   todoService = inject(TodoxService);
   todoItems = signal<Array<Todo>>([]);
+  searchTerm = signal('');
 
   ngOnInit(): void {
 
